@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Відгуки</title>
+    <style>
+        .good { color: green; }
+        .bad { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Залиште свій відгук</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.name.label }}<br>{{ form.name }}</p>
+        <p>{{ form.review_text.label }}<br>{{ form.review_text }}</p>
+        <p>{{ form.rating.label }}<br>{{ form.rating }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+    <hr>
+    <h2>Всі відгуки</h2>
+    <ul>
+        {% for review in reviews %}
+            <li class="{{ 'good' if review.rating == 'good' else 'bad' }}">
+                <strong>{{ review.name }}</strong>: {{ review.text }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
